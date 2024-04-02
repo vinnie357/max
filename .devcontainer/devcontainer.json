@@ -1,0 +1,41 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"name": "max",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+	// Features to add to the dev container. More info: https://containers.dev/features.
+    "features": {
+		"ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
+		"ghcr.io/devcontainers/features/nix:1": {}
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Configure tool-specific properties.
+	// Add the IDs of extensions you want installed when the container is created in the array below.
+	"customizations": {
+		"vscode": {
+		  "extensions": [
+			"eamodio.gitlens",
+			"github.vscode-pull-request-github",
+			"github.github-vscode-theme",
+			"github.copilot",
+			"bbenoist.Nix",
+			"JakeBecker.elixir-ls"
+		]
+	  }
+	  },
+
+	// Uncomment to mount your local gcloud configuration directory into the container.
+	// This will let you use local authentication methods (ie, browser auth) and have the auth apply within the container.
+	//"mounts": ["source=${localEnv:HOME}/.config/gcloud,target=/home/vscode/.config/gcloud,type=bind,consistency=cached"],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "/bin/bash ./.devcontainer/scripts/tools.sh >> ~/post-create-tools.log"
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
